@@ -66,6 +66,17 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-caret-down"></i> &nbsp;
+                        <span class="hidden-md"><?php _trans('expenses'); ?></span>
+                        <i class="visible-md-inline fa fa-credit-card"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><?php echo anchor('expenses/index', trans('view_expenses')); ?></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i> &nbsp;
                         <span class="hidden-md"><?php _trans('products'); ?></span>
                         <i class="visible-md-inline fa fa-database"></i>
                     </a>

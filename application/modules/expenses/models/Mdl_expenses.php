@@ -94,6 +94,7 @@ class Mdl_Expenses extends Response_Model
 		    ],
 		    'expense_status_id' => [
 			'field' => 'expense_status_id',
+		    	'rules' => 'required',
 		    ],
 		    'expense_category_id' => [
 			'field' => 'expense_category_id',
