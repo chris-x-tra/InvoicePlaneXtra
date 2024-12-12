@@ -72,7 +72,34 @@ class Expenses extends Admin_Controller
         $this->layout->render();
     }
 
+
+    public function form($expense_id = 0)
+    {
+
+        $this->layout->buffer('content', 'expenses/form');
+        $this->layout->render();
+    }
+
+    public function view($expense_id = 0)
+    {
+	$this->db->reset_query();
+        $expense = $this->mdl_expenses->get_by_id($expense_id);
+
+        if (!$expense) {
+            show_404();
+        }
+
+        $this->layout->set(
+            [
+                'expense' => $expense,
+	    ]
+	);
+
+        $this->layout->buffer('content', 'expenses/view');
+        $this->layout->render();
+    }
 	
+	// TODO!
     public function recalculate_all_expenses()
     {
         $this->db->select('expense');

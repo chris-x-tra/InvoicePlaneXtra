@@ -18,7 +18,7 @@ if (! defined('BASEPATH')) {
 // expense-module done by chrissie ^ x-tra-designs in 12.2024
 // descriptions of fieldata     // example value
 'expense_id',                   // 0			<- primary key
-'expense_number',               // XTD-B-0001           // my number number in the ip program
+'expense_number',               // XTD-B-0001           // my number number in the ip program - ??? not used atm - rethink
 'expense_description',         	// Netzteil schnell besorgt wegen notfall // my personal desription
 'expense_status_id',            // paid, ???
 'expense_category_id',          // ? <- buchhaltungskategorie for later use
@@ -30,14 +30,14 @@ if (! defined('BASEPATH')) {
 'expense_due_date',             // 14.07.2024
 'expense_paid_date',            // 18.07.2024
 'expense_amount',               // 39.95 [EUR]
-'expense_bank_book_day',        // 19.07.2024
+'expense_bank_book_date',        // 19.07.2024
 'expense_bank_book_subject',    // Zahlung an ARLT
 'expense_date_created',         // 01.07.2024   <- auto fields erstellt
 'expense_date_modified'         // 19.07.2024   <- auto fields modified
 
 // mysql commmand
 create table ip_expenses (
-expense_id int auto_increment primary key,
+expense_id int auto_increment primary key not null,
 expense_number varchar(100),
 expense_description varchar(255),
 expense_status_id tinyint,
@@ -50,7 +50,7 @@ expense_date date,
 expense_due_date date,
 expense_paid_date date,
 expense_amount decimal(20,2),
-expense_bank_book_day date,
+expense_bank_book_date date,
 expense_bank_book_subject varchar(100),
 expense_date_created datetime,
 expense_date_modified datetime
@@ -127,8 +127,8 @@ class Mdl_Expenses extends Response_Model
 			'field' => 'expense_amount',
 		    	'rules' => 'required',
 		    ],
-		    'expense_bank_book_day' => [
-			'field' => 'expense_bank_book_day',
+		    'expense_bank_book_date' => [
+			'field' => 'expense_bank_book_date',
 		    ],
 		    'expense_bank_book_subject' => [
 			'field' => 'expense_bank_book_subject',
