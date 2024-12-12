@@ -1,8 +1,17 @@
+
 <div id="headerbar">
-<h1 class="headerbar-title">
-	<?php _trans('view_expense'); ?>
-</h1>
+	<h1 class="headerbar-title">
+		<?php _trans('view_expense'); ?>
+	</h1>
+	<div class="headerbar-item pull-right">
+		<div class="btn-group btn-group-sm">
+			<a href="<?php echo site_url('expenses/form/' . $expense->expense_id); ?>" class="btn btn-default">
+				<i class="fa fa-edit"></i> <?php _trans('edit'); ?>
+			</a>
+		</div>
+	</div>
 </div>
+
 <!--
 'expense_id',			// 0			<- primary key
 'expense_number',		// XTD-B-0001		// my number number in the ip program - ??? not used atm - rethink
@@ -38,10 +47,12 @@
 					<th><?php _trans('expense_id'); ?></th>
 					<td><?php _htmlsc($expense->expense_id); ?></td>
 				</tr>
+<!--
 				<tr>
 					<th><?php _trans('expense_number'); ?></th>
 					<td><?php _htmlsc($expense->expense_number); ?></td>
 				</tr>
+-->
 				<tr>
 					<th><?php _trans('expense_description'); ?></th>
 					<td><?php _htmlsc($expense->expense_description); ?></td>
@@ -54,10 +65,12 @@
 					<th><?php _trans('expense_category_id'); ?></th>
 					<td><?php _htmlsc($expense->expense_category_id); ?></td>
 				</tr>
+<!--
 				<tr>
 					<th><?php _trans('expense_supplier_id'); ?></th>
 					<td><?php _htmlsc($expense->expense_supplier_id); ?></td>
 				</tr>
+-->
 				<tr>
 					<th><?php _trans('expense_supplier_name'); ?></th>
 					<td><?php _htmlsc($expense->expense_supplier_name); ?></td>

@@ -33,7 +33,7 @@ class Expenses extends Admin_Controller
     {
 
         // profiler for debug by chrissie
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
 
         // Display all expenses by default
         redirect('expenses/status/all');
@@ -73,17 +73,57 @@ class Expenses extends Admin_Controller
     }
 
 
-    public function form($expense_id = 0)
+    public function form($id = NULL)
     {
+
+        // profiler for debug by chrissie
+        // $this->output->enable_profiler(TRUE);
+ 
+        if ($this->input->post('btn_cancel')) {
+            redirect('expenses/index');
+        }
+
+        // debug by chrissie
+        if ( 0 && $this->input->post('btn_submit')) {
+        $this->dump_post();
+          die("btn_submit");
+        }
+        //
+
+        $this->filter_input();  // <<<--- filters _POST array for nastiness
+
+        if ($this->mdl_expenses->run_validation()) {
+            $id = $this->mdl_expenses->save($id);
+             
+            if (!$id ) {
+                $this->session->set_flashdata('alert_error', $result);
+                $this->session->set_flashdata('alert_success', null);
+                redirect('expenses/form');
+                
+                return;
+            }
+            redirect('expenses/view/' . $id);
+        }
+
+        $this->layout->set(
+            [
+                'expense_id' => $id,
+            ]
+        );
+
+        if ($id) {
+	    $expense = $this->mdl_expenses->where('ip_expenses.expense_id', $id)->get()->row();
+            $this->layout->set('expense', $expense);
+        }
 
         $this->layout->buffer('content', 'expenses/form');
         $this->layout->render();
     }
 
-    public function view($expense_id = 0)
+    public function view($id = 0)
     {
 	$this->db->reset_query();
-        $expense = $this->mdl_expenses->get_by_id($expense_id);
+        $expense = $this->mdl_expenses->get_by_id($id);
 
         if (!$expense) {
             show_404();

@@ -1,8 +1,16 @@
 
 <div id="headerbar">
 <h1 class="headerbar-title">
-	<?php _trans('add_expense'); ?>
+<?php 
+if($expense_id)
+	_trans('edit_expense');
+else
+	_trans('add_expense'); 
+?>
+
+<?php // var_dump($expense); // Debug - workz. ?>
 </h1>
+	<?php $this->layout->load_view('layout/header_buttons'); ?>
 </div>
 
 <div id="content">
@@ -23,7 +31,7 @@
         <label for="expense_descripton">
             <?php _trans('expense_descripton'); ?>
         </label>
-        <input id="expense_descripton" name="expense_descripton" type="text" class="form-control"
+        <input id="expense_descripton" name="expense_description" type="text" class="form-control"
             value="<?php echo $this->mdl_expenses->form_value('expense_descripton', true); ?>">
     </div>
 
@@ -111,16 +119,13 @@
     <div class="form-group">
     TODO!
         <label><?php _trans('select_document'); ?></label>
-        <input class="form-control" type="file" name="document" required>
+        <input class="form-control" type="file" name="document" >
     </div>
 
-    <div class="btn-group btn-group-sm index-options">
-        <button type="submit" class="btn btn-success"> 
-            <?php _trans('add'); ?>
-        </button>
-    </div>
+<?php $this->layout->load_view('layout/footer_buttons'); ?>
+
     </form>
-    <!-- -->
+  <!-- -->
 
 
 

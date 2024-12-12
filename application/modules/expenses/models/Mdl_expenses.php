@@ -85,7 +85,6 @@ class Mdl_Expenses extends Response_Model
 		    'expense_number' => [
 		    	'field' => 'expense_number',
 		    	'label' => trans('expense_number'),
-		    	'rules' => 'required',
 		    ],
 		    'expense_description' => [
 			'field' => 'expense_description',
@@ -94,7 +93,6 @@ class Mdl_Expenses extends Response_Model
 		    ],
 		    'expense_status_id' => [
 			'field' => 'expense_status_id',
-		    	'rules' => 'required',
 		    ],
 		    'expense_category_id' => [
 			'field' => 'expense_category_id',

@@ -87,6 +87,11 @@
                             <i class="fa fa-cog"></i> <?php _trans('options'); ?>
                         </a>
                         <ul class="dropdown-menu">
+                                <li>
+                                    <a href="<?php echo site_url('expenses/form/' . $expense->expense_id); ?>">
+                                        <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
+                                    </a>
+                                </li>
                             <li>
                                 <a href="#" class="expense-add-payment"
                                    data-expense-id="<?php //echo $expense->expense_id; ?>"
