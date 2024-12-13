@@ -124,7 +124,7 @@ class Mdl_Expenses extends Response_Model
 		    ],
 		    'expense_amount' => [
 			'field' => 'expense_amount',
-		    	'rules' => 'required',
+		    	'rules' => 'callback_convert_amount',
 		    ],
 		    'expense_bank_book_date' => [
 			'field' => 'expense_bank_book_date',
@@ -137,6 +137,18 @@ class Mdl_Expenses extends Response_Model
 		    ],
 	    ];
     }
+
+                
+	/* YES! */
+    public function convert_amount($input)
+    {
+        if ($input == '') {
+            return '';
+        }
+                
+        return standardize_amount($input);
+    }
+
 
     /**
      * @param int $amount

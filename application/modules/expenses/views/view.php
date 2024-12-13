@@ -7,6 +7,11 @@
 	</h1>
 	<div class="headerbar-item pull-right">
 		<div class="btn-group btn-group-sm">
+
+            <a href="<?php echo site_url('expenses/status/all'); ?>"
+               class="btn btn-default">
+                <?php _trans('view_all'); ?>
+            </a>
 			<a href="<?php echo site_url('expenses/form/' . $expense->expense_id); ?>" class="btn btn-default">
 				<i class="fa fa-edit"></i> <?php _trans('edit'); ?>
 			</a>

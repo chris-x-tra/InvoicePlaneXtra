@@ -62,11 +62,11 @@ class Expenses extends Admin_Controller
         $expenses = $this->mdl_expenses->result();
 
         $this->layout->set(
-            [
+                [
                 'expenses' => $expenses,
                 'status' => $status,
-            ]
-        );
+                ]
+                );
 
         $this->layout->buffer('content', 'expenses/index');
         $this->layout->render();
@@ -85,28 +85,31 @@ class Expenses extends Admin_Controller
     {
         // profiler for debug by chrissie
         //$this->output->enable_profiler(TRUE);
- 
+
         if ($this->input->post('btn_cancel')) {
             redirect('expenses/index');
         }
-        //$this->dump_post();
 
         // debug by chrissie
         if ( 0 && $this->input->post('btn_submit')) {
-        	$this->dump_post();
+            $this->dump_post();
         }
         //
 
         $this->filter_input();  // <<<--- filters _POST array for nastiness
 
         if ($this->mdl_expenses->run_validation()) {
+            // new or edit?
+            if ($this->input->post('expense_id')) 
+                $id = $this->input->post('expense_id');
+
             $id = $this->mdl_expenses->save($id);
-             
+
             if (!$id ) {
                 $this->session->set_flashdata('alert_error', $result);
                 $this->session->set_flashdata('alert_success', null);
                 redirect('expenses/form');
-                
+
                 return;
             }
             redirect('expenses/view/' . $id);
@@ -116,9 +119,7 @@ class Expenses extends Admin_Controller
             if ( ! $this->mdl_expenses->prep_form($id)) {
                 show_404();
             }
-	}
-
-        $this->layout->set( [ 'expense_id' => $id ] );
+        }
 
         $this->layout->buffer('content', 'expenses/form');
         $this->layout->render();
@@ -126,7 +127,7 @@ class Expenses extends Admin_Controller
 
     public function view($id = 0)
     {
-	$this->db->reset_query();
+        $this->db->reset_query();
         $expense = $this->mdl_expenses->get_by_id($id);
 
         if (!$expense) {
@@ -134,16 +135,16 @@ class Expenses extends Admin_Controller
         }
 
         $this->layout->set(
-            [
+                [
                 'expense' => $expense,
-	    ]
-	);
+                ]
+                );
 
         $this->layout->buffer('content', 'expenses/view');
         $this->layout->render();
     }
-	
-	// TODO!
+
+    // TODO!
     public function recalculate_all_expenses()
     {
         $this->db->select('expense');

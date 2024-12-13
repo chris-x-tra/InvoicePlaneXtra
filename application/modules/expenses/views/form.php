@@ -1,12 +1,8 @@
 
 <div id="headerbar">
 <h1 class="headerbar-title">
-<?php 
-if($expense_id)
-	_trans('edit_expense');
-else
-	_trans('add_expense'); 
-?>
+
+<?php _trans('expense_form'); ?>
 
 <?php // var_dump($expense); // Debug - workz. ?>
 </h1>
@@ -17,8 +13,14 @@ else
     <?php echo $this->layout->load_view('layout/alerts'); ?>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-5">
-                    <h3><?php _trans('add_expense'); ?></h3>
-                    <br />
+	<h3>
+          <?php if ($this->mdl_expenses->form_value('expense_id')) : ?>
+              <?php _trans('edit_expense'); ?>
+          <?php else : ?>
+              <?php _trans('add_expense'); ?>
+          <?php endif; ?>
+	</h3>
+<br />
 
     <!-- -->
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('expenses/form'); ?>">
@@ -26,10 +28,9 @@ else
     <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
-    <?php if ($expense_id) { ?>
-        <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
-    <?php } ?>
-
+	<?php if ($this->mdl_expenses->form_value('expense_id')) : ?>
+	<input type="hidden" name="expense_id" value="<?= $this->mdl_expenses->form_value('expense_id') ?>" >
+	<?php endif; ?>
 
     <div class="form-group">
         <label for="expense_description">
@@ -59,7 +60,8 @@ else
             <?php _trans('expense_amount'); ?>
         </label>
         <input id="expense_amount" name="expense_amount" type="text" class="form-control"
-            value="<?php echo $this->mdl_expenses->form_value('expense_amount', true); ?>">
+	value="<?php echo $this->mdl_expenses->form_value('expense_amount'); ?>" required>
+	 <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
     </div>
 
     <div class="form-group">
