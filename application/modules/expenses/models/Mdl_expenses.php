@@ -74,6 +74,7 @@ class Mdl_Expenses extends Response_Model
             'SQL_CALC_FOUND_ROWS ' . $this->table . '.*, '
 	 , false) ;
     }
+
     public function default_order_by()
     {
         $this->db->order_by('ip_expenses.expense_id');

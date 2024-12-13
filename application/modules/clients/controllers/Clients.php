@@ -182,7 +182,7 @@ class Clients extends Admin_Controller
     public function form($id = null)
     {
 	// profiler for debug by chrissie
-	// $this->output->enable_profiler(TRUE);
+	//$this->output->enable_profiler(TRUE);
 
 	$this->load->model('clients/mdl_client_extended');
 

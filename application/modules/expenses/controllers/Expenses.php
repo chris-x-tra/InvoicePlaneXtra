@@ -72,16 +72,15 @@ class Expenses extends Admin_Controller
         $this->layout->render();
     }
 
-
     public function form($id = NULL)
     {
-
         // profiler for debug by chrissie
-        // $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
  
         if ($this->input->post('btn_cancel')) {
             redirect('expenses/index');
         }
+        //$this->dump_post();
 
         // debug by chrissie
         if ( 0 && $this->input->post('btn_submit')) {
@@ -105,16 +104,13 @@ class Expenses extends Admin_Controller
             redirect('expenses/view/' . $id);
         }
 
-        $this->layout->set(
-            [
-                'expense_id' => $id,
-            ]
-        );
+        if ($id && ! $this->input->post('btn_submit')) {
+            if ( ! $this->mdl_expenses->prep_form($id)) {
+                show_404();
+            }
+	}
 
-        if ($id) {
-	    $expense = $this->mdl_expenses->where('ip_expenses.expense_id', $id)->get()->row();
-            $this->layout->set('expense', $expense);
-        }
+        $this->layout->set( [ 'expense_id' => $id ] );
 
         $this->layout->buffer('content', 'expenses/form');
         $this->layout->render();

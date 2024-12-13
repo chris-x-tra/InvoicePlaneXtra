@@ -10,7 +10,7 @@ else
 
 <?php // var_dump($expense); // Debug - workz. ?>
 </h1>
-	<?php $this->layout->load_view('layout/header_buttons'); ?>
+	<?php //$this->layout->load_view('layout/header_buttons'); ?>
 </div>
 
 <div id="content">
@@ -26,13 +26,17 @@ else
     <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
+    <?php if ($expense_id) { ?>
+        <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>">
+    <?php } ?>
+
 
     <div class="form-group">
-        <label for="expense_descripton">
-            <?php _trans('expense_descripton'); ?>
+        <label for="expense_description">
+            <?php _trans('expense_description'); ?>
         </label>
         <input id="expense_descripton" name="expense_description" type="text" class="form-control"
-            value="<?php echo $this->mdl_expenses->form_value('expense_descripton', true); ?>">
+            value="<?php echo $this->mdl_expenses->form_value('expense_description', true); ?>">
     </div>
 
     <div class="form-group">
@@ -122,8 +126,18 @@ else
         <input class="form-control" type="file" name="document" >
     </div>
 
-<?php $this->layout->load_view('layout/footer_buttons'); ?>
+  <!-- -->
+    <div class="btn-group btn-group-sm index-options">
+        <button type="submit" class="btn btn-success" name="btn_submit" value="1">
+            <?php _trans('save'); ?>
+        </button>
 
+        <button type="submit" class="btn btn-cancel" name="btn_cancel" value="1"> 
+            <?php _trans('cancel'); ?>
+        </button>
+    </div>
+  <!-- -->
+    <?php //$this->layout->load_view('layout/footer_buttons'); ?>
     </form>
   <!-- -->
 
