@@ -72,6 +72,15 @@ class Expenses extends Admin_Controller
         $this->layout->render();
     }
 
+    function dump_post()
+    {
+        $post = array();
+        foreach ( array_keys($_POST) as $key ) {
+            $post[$key] = $this->input->post($key);
+        }
+        echo '<pre>'; print_r($post); echo '</pre>';
+    }
+
     public function form($id = NULL)
     {
         // profiler for debug by chrissie
@@ -84,8 +93,7 @@ class Expenses extends Admin_Controller
 
         // debug by chrissie
         if ( 0 && $this->input->post('btn_submit')) {
-        $this->dump_post();
-          die("btn_submit");
+        	$this->dump_post();
         }
         //
 

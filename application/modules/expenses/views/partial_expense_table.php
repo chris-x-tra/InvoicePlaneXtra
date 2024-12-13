@@ -19,6 +19,7 @@
         <tbody>
         <?php
         $expense_idx = 1;
+//var_dump ($expenses);
         $expense_count = count($expenses);
         $expense_list_split = $expense_count > 3 ? $expense_count / 2 : 9999;
         foreach ($expenses as $expense) {
@@ -35,9 +36,7 @@
                 </td>
             -->
                 <td>
-                    <span class="label">
                         <?php echo date_from_mysql($expense->expense_date); ?>
-                    </span>
                 </td>
 
                 <td>
@@ -48,15 +47,11 @@
                 </td>
 
                 <td>
-                    <span class="label">
                         <?php echo ($expense->expense_supplier_number); ?>
-                    </span>
                 </td>
 
                 <td>
-                    <span class="label">
                         <?php echo ($expense->expense_supplier_name); ?>
-                    </span>
                 </td>
 
                 <td class="amount">
@@ -64,21 +59,15 @@
                 </td>
 
                 <td>
-                    <span class="label">
                         <?php echo ($expense->expense_category_id); ?>
-                    </span>
                 </td>
 
                 <td class="due_date">
-                    <span class="label <?php echo $expense->expense_due_date; ?>"
-                        <?php echo date_from_mysql($expense->expense_due_date); ?>
-                    </span>
+                        <?php echo format_date($expense->expense_due_date); ?>
                 </td>
 
                 <td>
-                    <span class="label <?php echo $expense->expense_status_id; ?>"
                         <?php echo $expense->expense_status_id; ?>
-                    </span>
                 </td>
 
                 <td>

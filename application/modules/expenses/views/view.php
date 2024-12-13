@@ -1,4 +1,6 @@
-
+<?php
+  $this->load->helper('custom_values_helper');	// <- format_date
+?>
 <div id="headerbar">
 	<h1 class="headerbar-title">
 		<?php _trans('view_expense'); ?>
@@ -80,28 +82,28 @@
 					<td><?php _htmlsc($expense->expense_supplier_number); ?></td>
 				</tr>
 				<tr>
+					<th><?php _trans('expense_amount'); ?></th>
+					<td><?php echo format_currency($expense->expense_amount); ?></td>
+				</tr>
+				<tr>
 					<th><?php _trans('expense_filename'); ?></th>
 					<td><?php _htmlsc($expense->expense_filename); ?></td>
 				</tr>
 				<tr>
 					<th><?php _trans('expense_date'); ?></th>
-					<td><?php _htmlsc($expense->expense_date); ?></td>
+					<td><?php echo format_date($expense->expense_date); ?></td>
 				</tr>
 				<tr>
 					<th><?php _trans('expense_due_date'); ?></th>
-					<td><?php _htmlsc($expense->expense_due_date); ?></td>
+					<td><?php echo format_date($expense->expense_due_date); ?></td>
 				</tr>
 				<tr>
 					<th><?php _trans('expense_paid_date'); ?></th>
-					<td><?php _htmlsc($expense->expense_paid_date); ?></td>
-				</tr>
-				<tr>
-					<th><?php _trans('expense_amount'); ?></th>
-					<td><?php _htmlsc($expense->expense_amount); ?></td>
+					<td><?php echo format_date($expense->expense_paid_date); ?></td>
 				</tr>
 				<tr>
 					<th><?php _trans('expense_bank_book_date'); ?></th>
-					<td><?php _htmlsc($expense->expense_bank_book_date); ?></td>
+					<td><?php echo format_date($expense->expense_bank_book_date); ?></td>
 				</tr>
 				<tr>
 					<th><?php _trans('expense_bank_book_subject'); ?></th>

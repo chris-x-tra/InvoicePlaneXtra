@@ -1,3 +1,6 @@
+<?php
+  $this->load->helper('custom_values_helper');  // <- format_date
+?>
 <div id="headerbar">
 
     <h1 class="headerbar-title"><?php _trans('expenses'); ?></h1>

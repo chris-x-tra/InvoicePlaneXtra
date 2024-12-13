@@ -66,7 +66,7 @@ else
         <label for="expense_date">
             <?php _trans('expense_date'); ?>
         </label>
-        <input id="expense_date" name="expense_date" type="text" class="form-control"
+        <input id="expense_date" name="expense_date" type="date" class="form-control"
             value="<?php echo $this->mdl_expenses->form_value('expense_date', true); ?>">
     </div>
 
@@ -74,7 +74,7 @@ else
         <label for="expense_due_date">
             <?php _trans('expense_due_date'); ?>
         </label>
-        <input id="expense_due_date" name="expense_due_date" type="text" class="form-control"
+        <input id="expense_due_date" name="expense_due_date" type="date" class="form-control"
             value="<?php echo $this->mdl_expenses->form_value('expense_due_date', true); ?>">
     </div>
 
@@ -82,7 +82,7 @@ else
         <label for="expense_paid_date">
             <?php _trans('expense_paid_date'); ?>
         </label>
-        <input id="expense_paid_date" name="expense_paid_date" type="text" class="form-control"
+        <input id="expense_paid_date" name="expense_paid_date" type="date" class="form-control"
             value="<?php echo $this->mdl_expenses->form_value('expense_paid_date', true); ?>">
     </div>
 
@@ -90,7 +90,7 @@ else
         <label for="expense_bank_book_date">
             <?php _trans('expense_bank_book_date'); ?>
         </label>
-        <input id="expense_bank_book_date" name="expense_bank_book_date" type="text" class="form-control"
+        <input id="expense_bank_book_date" name="expense_bank_book_date" type="date" class="form-control"
             value="<?php echo $this->mdl_expenses->form_value('expense_bank_book_date', true); ?>">
     </div>
 
