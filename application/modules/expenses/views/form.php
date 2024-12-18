@@ -120,15 +120,6 @@
             value="<?php echo $this->mdl_expenses->form_value('expense_category_id', true); ?>">
     </div>
 
-
-<!-- TODO upload, expense_filename -->
-    <div class="form-group">
-    TODO!
-        <label><?php _trans('select_document'); ?></label>
-        <input class="form-control" type="file" name="document" >
-    </div>
-
-  <!-- -->
     <div class="btn-group btn-group-sm index-options">
         <button type="submit" class="btn btn-success" name="btn_submit" value="1">
             <?php _trans('save'); ?>
@@ -143,6 +134,29 @@
     </form>
   <!-- -->
 
+
+<!-- hacky hacky - todo make like upload in invoice -->
+<?php if ($this->mdl_expenses->form_value('expense_id')) : ?>
+<br /><br />
+
+<form method="post" enctype="multipart/form-data" action="<?php echo site_url('expenses/do_upload_document/' .$this->mdl_expenses->form_value('expense_id')); ?>">
+    <input type="hidden" name="<?php echo $this->config->item('csrf_token_name'); ?>"
+           value="<?php echo $this->security->get_csrf_hash() ?>">
+
+          <div class="form-group">
+            <label><?php _trans('select_document'); ?></label>
+            <input class="form-control" type="file" name="document" required>
+          </div>
+
+        <div class="btn-group btn-group-sm index-options">
+            <button type="submit" class="btn btn-success">
+                 <?php _trans('upload'); ?>
+                </button>
+          </div>
+</form>
+
+<?php endif; ?>
+<!-- -->
 
 
             </div>

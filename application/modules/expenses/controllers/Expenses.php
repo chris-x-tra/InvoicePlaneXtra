@@ -125,6 +125,12 @@ class Expenses extends Admin_Controller
         $this->layout->render();
     }
 
+    public function do_upload_document($id = 0)
+{
+
+die("do_upload");
+    }
+
     public function view($id = 0)
     {
         $this->db->reset_query();
